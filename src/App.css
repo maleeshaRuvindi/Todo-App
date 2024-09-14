@@ -22,18 +22,40 @@ h1 {
   color: #fff;
   margin-bottom: 0.5rem;
   font-size: 1.75rem;
+  text-align: center;
 }
 
+h2{
+  color: #fff;
+}
+
+p{
+  color: #fff;
+}
+
+
+.Register,.Login {
+  background: #1A1A40;
+  margin-top: 5rem;
+  padding: 2rem;
+  
+  border-radius: 5px;
+  
+  
+}
 .TodoWrapper {
   background: #1A1A40;
   margin-top: 5rem;
   padding: 2rem;
   border-radius: 5px;
+  
 }
 
 .TodoForm {
   width: 100%;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .todo-input {
@@ -43,7 +65,7 @@ h1 {
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  width: 300px;
+  width: 100%;
   color: #fff;
 }
 
@@ -57,6 +79,10 @@ h1 {
   border: none;
   padding: 0.55rem;
   cursor: pointer;
+}
+
+.todo-btn:hover {
+  background-color: #ffffff4d;
 }
 
 .Todo {
@@ -88,5 +114,14 @@ h1 {
 .edit-icon,
 .delete-icon {
   cursor: pointer;
+}
+.error{
+  color: red;
+  max-width: 100%; 
+  word-wrap: break-word; 
+}
+
+.success-message{
+  color: white;
 }
  

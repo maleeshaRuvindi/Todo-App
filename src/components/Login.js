@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'; 
 import { useAuth } from './AuthContext';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import { useNavigate } from 'react-router-dom'; 
+import { useLocation } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,40 +15,57 @@ const Login = () => {
     e.preventDefault();
     const success = login(email, password);
     if (!success) {
-      setError('Invalid email or password.');
+      setError('Invalid email or password.');//handling invalid emails and passwords
     } else {
       setError(null);
-      alert('Login successful');
-      navigate('/todo'); // Redirect to the dashboard after successful login
+
+      navigate('/todo', { state: { successMessage: 'Login successful' } });//successful login
     }
   };
 
   const handleRegisterRedirect = () => {
-    navigate('/register'); // Redirect to the register page when clicked
+    navigate('/register'); 
+    
   };
+  const location = useLocation();
+  const [successMessage, setSuccessMessage] = useState(location.state?.successMessage || null);
+
+  useEffect(() => {
+    if (successMessage) {
+      // Clear the success message after 3 seconds
+      const timer = setTimeout(() => {
+        setSuccessMessage(null);
+      }, 3000);
+
+      return () => clearTimeout(timer); // Cleanup the timer on unmount
+    }
+  }, [successMessage]);
 
   return (
-    <div>
+    <div className='Login'>
+        {successMessage && <div className='success-message'>{successMessage}</div>}
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='TodoForm'>
         <input
           type="email"
           placeholder="Email"
+          className="todo-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
+          className="todo-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button type="submit" className='todo-btn'>Login</button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
       {/* Register Button */}
       <p>Don't have an account?</p>
-      <button onClick={handleRegisterRedirect}>Register</button>
+      <button onClick={handleRegisterRedirect} className='todo-btn'>Register</button>
     </div>
   );
 };

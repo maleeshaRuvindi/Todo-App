@@ -1,20 +1,3 @@
-// import React, {useState} from 'react' 
-
-// export const TodoForm = ({addTodo})=>{
-//     const [value,setValue] =useState("")
-
-//     const handleSubmit = e =>{
-//         e.preventDefault();
-//         addTodo(value)
-//         setValue("")
-//     }
-//     return (
-//         <form className="TodoForm" onSubmit={handleSubmit}>
-//             <input type="text" value={value} className="todo-input" placeholder='What is the task today?' onChange={(e)=>setValue(e.target.value)} />
-//             <button type="submit" className='todo-btn'>Add Task</button>
-//         </form>
-//     )
-// }
 import React, {useState} from 'react'
 
 export const TodoForm = ({addTodo}) => {
@@ -32,19 +15,19 @@ export const TodoForm = ({addTodo}) => {
         <form className="TodoForm" onSubmit={handleSubmit}>
             <input 
                 type="text" 
-                value={title}  // Binding title to input
+                value={title}   //input title
                 className="todo-input" 
                 placeholder='Enter title'
                 onChange={(e) => setTitle(e.target.value)} 
             />
-            <input 
+            <textarea
                 type="text" 
-                value={description}  // Binding description to input
+                value={description}  // input description
                 className="todo-input" 
                 placeholder='Enter description'
                 onChange={(e) => setDescription(e.target.value)} 
             />
-            <button type="submit" className='todo-btn'>Add Task</button>
+            <button type="submit" className='todo-btn'>Add Task</button> 
         </form>
     )
 }
