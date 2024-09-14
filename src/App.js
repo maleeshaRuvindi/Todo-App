@@ -1,13 +1,16 @@
 
 import './App.css';
-import { TodoWrapper } from './components/TodoWrapper';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import React Router components
+import { AuthProvider } from './components/AuthContext'; // Import AuthProvider to manage authentication state
+import AppRoutes from './routes/Routes'; // Import AppRoutes component
 
-function App() {
-  return (
-    <div className="App">
-      <TodoWrapper/>
-    </div>
-  );
-}
+const App = () => (
+  <AuthProvider>
+    <Router>
+      <AppRoutes />
+    </Router>
+  </AuthProvider>
+);
 
 export default App;

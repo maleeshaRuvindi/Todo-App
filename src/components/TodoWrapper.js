@@ -3,6 +3,8 @@ import { TodoForm } from './TodoForm'
 import { v4 as uuidv4 } from "uuid";
 import { Todo } from './Todo';
 import { EditTodoForm } from './EditTodoForm';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 uuidv4();
 
 export const TodoWrapper = ()=>{
@@ -41,6 +43,13 @@ export const TodoWrapper = ()=>{
           )
         );
       };
+      const navigate = useNavigate(); // Initialize useNavigate for navigation
+      // eslint-disable-next-line
+      const { user, logout } = useAuth();
+      const handleLogout = () => {
+        logout(); // Call the logout function from the context
+        navigate('/login'); // Redirect to the login page after logout
+  };
 
     return (
         <div className='TodoWrapper'>
@@ -58,7 +67,7 @@ export const TodoWrapper = ()=>{
           />
         )
       )}
-            
+        <button onClick={handleLogout}>Logout</button> {/* Call handleLogout on click */}  
         </div>
     )
 }
